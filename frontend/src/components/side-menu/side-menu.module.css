@@ -1,0 +1,121 @@
+.sideMenu {
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+    min-height: 100vh;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.logo {
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+    padding: 5px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoImage {
+    width: 64px;
+}
+
+.logoText {
+    font-size: xxx-large;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+}
+
+.menuItem:hover {
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.menuItemText {
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+.menuItemCollapsableContents {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.menuItemCollapsable  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+}
+
+.menuItemCollapsable:hover {
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.server {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+    cursor: pointer;
+}
+
+.server:hover {
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.serverUnavailable {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2))
+}
+
+.serverName {
+    padding: 10px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.serverPower {
+    width: 10px;
+    height: 100%;
+    background-color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2));
+}
+
+.serverPowered {
+    background-color: var(--mantine-color-green-6) !important;
+}
+
+.serverNotPowered {
+    background-color: var(--mantine-color-red-6) !important;
+}
+
+.smallServerStatus {
+    font-size: x-small;
+}
+
+.serverStatus {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menuItemCollapsableChevron {
+    opacity: 40%;
+}

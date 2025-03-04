@@ -10,7 +10,7 @@
     "buttons": {},
     "toggles": {
       "power": {
-        "color": "gray",
+        "color": "green",
         "icon": "power",
         "pin": "dtr"
       }
@@ -31,7 +31,7 @@
     "buttons": {},
     "toggles": {
       "power": {
-        "color": "gray",
+        "color": "green",
         "icon": "power",
         "pin": "dtr"
       }
@@ -52,7 +52,103 @@
     "buttons": {},
     "toggles": {
       "power": {
-        "color": "gray",
+        "color": "green",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "powerStatus": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "mipsel": {
+    "name": "MIPS LE",
+    "description": "MediaTek MT7621, 256M RAM",
+    "tty": {
+      "path": "/dev/external-serials/mipsel-57600",
+      "baudrate": 57600
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "green",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "powerStatus": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "mips64": {
+    "name": "MIPS64",
+    "description": "Cavium Octeon+ V0.1, 512M RAM",
+    "tty": {
+      "path": "/dev/external-serials/mips64-115200",
+      "baudrate": 115200
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "green",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "powerStatus": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "riscv64": {
+    "name": "RISC-V 64",
+    "description": "SophGo SG2002, 64M RAM",
+    "tty": {
+      "path": "/dev/external-serials/riscv64-115200",
+      "baudrate": 115200
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "green",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "powerStatus": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "test": {
+    "name": "Test",
+    "description": "Test",
+    "tty": {
+      "path": "/dev/ttyCH9344USB0",
+      "baudrate": 115200
+    },
+    "leds": {
+      "test": {
+        "color": "orange",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "buttons": {
+      "test": {
+        "color": "orange",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "toggles": {
+      "test": {
+        "color": "orange",
         "icon": "power",
         "pin": "dtr"
       }

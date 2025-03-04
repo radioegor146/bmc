@@ -1,16 +1,20 @@
 "use client";
 
-import classes from "@/app/app.module.css";
+import classes from "@/components/side-menu/side-menu.module.css";
 import {useEffect, useState} from "react";
 import {IconChevronDown, IconChevronUp} from "@tabler/icons-react";
 import {useRouter} from "next/navigation";
 
-export function SideMenuServerItem({name, available, isPowered}: {
+export function SideMenuServerItem({name, available, isPowered, link}: {
     name: string,
     available: boolean,
-    isPowered: boolean
+    isPowered: boolean,
+    link: string
 }) {
-    return <div className={`${classes.server} ${available ? classes.serverAvaliable : classes.serverUnavailable}`}>
+    const router = useRouter();
+
+    return <div className={`${classes.server} ${available ? classes.serverAvaliable : classes.serverUnavailable}`}
+                onClick={() => router.push(link)}>
         <div className={classes.serverName}>{name}</div>
         <div className={classes.serverStatus}>
             <div className={classes.smallServerStatus}>{available ? isPowered ? "On" : "Off" : "N/A"}</div>
