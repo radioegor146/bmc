@@ -155,7 +155,7 @@
     },
     "powerStatus": {
       "type": "toggle",
-      "id": "power"
+      "id": "test"
     }
   }
 }
