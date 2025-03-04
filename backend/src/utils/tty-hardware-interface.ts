@@ -134,22 +134,26 @@ export class TTYHardwareInterface {
         await this.setPinStateSemaphore.wait();
         const newDtr = pin === "dtr" ? state : this.dtr;
         const newRts = pin === "rts" ? state : this.rts;
-        await new Promise<void>((resolve, reject) => {
-            this.serialPort.set({
-                dtr: newDtr,
-                rts: newRts
-            }, error => {
-                if (error) {
-                    this.logger.error(`Failed to set pin state: ${error}`);
-                    this.restart();
-                    reject(error);
-                    return;
-                }
-                this.dtr = newDtr;
-                this.rts = newRts;
-                this.setPinStateSemaphore.release();
+        try {
+            await new Promise<void>((resolve, reject) => {
+                this.serialPort.set({
+                    dtr: newDtr,
+                    rts: newRts
+                }, error => {
+                    if (error) {
+                        this.logger.error(`Failed to set pin state: ${error}`);
+                        this.restart();
+                        reject(error);
+                        return;
+                    }
+                    this.dtr = newDtr;
+                    this.rts = newRts;
+                    resolve();
+                });
             });
-        })
+        } finally {
+            this.setPinStateSemaphore.release();
+        }
     }
 
     async write(data: Buffer): Promise<void> {
@@ -157,20 +161,22 @@ export class TTYHardwareInterface {
             throw new Error("Not connected");
         }
         await this.writeSemaphore.wait();
-        await new Promise<void>((resolve, reject) => {
-            this.serialPort.write(data, error => {
-                if (error) {
-                    this.logger.error(`Failed to write: ${error}`);
-                    this.serialPort.close();
-                    this.serialPort = undefined;
-                    setTimeout(() => this.start, 1000);
-                    reject(error);
-                    this.writeSemaphore.release();
-                    return;
-                }
-                resolve();
-                this.writeSemaphore.release();
+        try {
+            await new Promise<void>((resolve, reject) => {
+                this.serialPort.write(data, error => {
+                    if (error) {
+                        this.logger.error(`Failed to write: ${error}`);
+                        this.serialPort.close();
+                        this.serialPort = undefined;
+                        setTimeout(() => this.start, 1000);
+                        reject(error);
+                        return;
+                    }
+                    resolve();
+                });
             });
-        });
+        } finally {
+            this.writeSemaphore.release();
+        }
     }
 }
