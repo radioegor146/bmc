@@ -15,7 +15,7 @@
         "pin": "dtr"
       }
     },
-    "power_status": {
+    "powerStatus": {
       "type": "toggle",
       "id": "power"
     }
@@ -36,7 +36,7 @@
         "pin": "dtr"
       }
     },
-    "power_status": {
+    "powerStatus": {
       "type": "toggle",
       "id": "power"
     }
@@ -57,7 +57,7 @@
         "pin": "dtr"
       }
     },
-    "power_status": {
+    "powerStatus": {
       "type": "toggle",
       "id": "power"
     }
