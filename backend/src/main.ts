@@ -1,7 +1,7 @@
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
 import {ValidationPipe} from "@nestjs/common";
-import path from "path";
+import * as path from "path";
 import {promises as fsPromises} from "fs";
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
 

@@ -1,0 +1,346 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/servers": {
+            "get": {
+                "operationId": "ServersController_getServers",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ServerInfoDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Erroneous response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get all servers and their information",
+                "tags": [
+                    "servers"
+                ]
+            }
+        },
+        "/api/servers/{id}/hardware": {
+            "get": {
+                "operationId": "ServersController_getServerHardwareInfo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ServerHardwareInfoDTO"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Erroneous response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get hardware server information by its ID",
+                "tags": [
+                    "servers"
+                ]
+            }
+        },
+        "/api/servers/{id}/log": {
+            "get": {
+                "operationId": "ServersController_getServerLog",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Erroneous response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Get server log",
+                "tags": [
+                    "servers"
+                ]
+            }
+        },
+        "/api/servers/{serverId}/button/{buttonId}": {
+            "patch": {
+                "operationId": "ServersController_setButton",
+                "parameters": [
+                    {
+                        "name": "serverId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "buttonId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangeStateDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "default": {
+                        "description": "Erroneous response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Set server button state",
+                "tags": [
+                    "servers"
+                ]
+            }
+        },
+        "/api/servers/{serverId}/toggle/{toggleId}": {
+            "patch": {
+                "operationId": "ServersController_setToggle",
+                "parameters": [
+                    {
+                        "name": "serverId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "toggleId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangeStateDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "default": {
+                        "description": "Erroneous response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Set server toggle state",
+                "tags": [
+                    "servers"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "BMC",
+        "description": "BMC for servers.re146.dev",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "schemas": {
+            "ServerInfoDTO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "unavailable",
+                            "powered",
+                            "not-powered"
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "description",
+                    "status"
+                ]
+            },
+            "ErrorApiResponse": {
+                "type": "object",
+                "properties": {
+                    "statusCode": {
+                        "type": "number"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "statusCode",
+                    "message"
+                ]
+            },
+            "HardwareOptionInfoDTO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string",
+                        "enum": [
+                            "power",
+                            "reset"
+                        ]
+                    },
+                    "state": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "color",
+                    "icon"
+                ]
+            },
+            "ServerHardwareInfoDTO": {
+                "type": "object",
+                "properties": {
+                    "leds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HardwareOptionInfoDTO"
+                        }
+                    },
+                    "buttons": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HardwareOptionInfoDTO"
+                        }
+                    },
+                    "toggles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HardwareOptionInfoDTO"
+                        }
+                    }
+                },
+                "required": [
+                    "leds",
+                    "buttons",
+                    "toggles"
+                ]
+            },
+            "ChangeStateDTO": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "state"
+                ]
+            }
+        }
+    }
+}

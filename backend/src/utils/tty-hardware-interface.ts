@@ -63,14 +63,6 @@ export class TTYHardwareInterface {
                     this.restart();
                     return;
                 }
-                this.serialPort.addListener("error", error => {
-                    this.logger.error(`Error: ${error}`);
-                    this.restart();
-                });
-                this.serialPort.addListener("close", () => {
-                    this.logger.warn(`Closed?`);
-                    this.restart();
-                });
                 this.serialPort.addListener("data", data => {
                     if (this.onData) {
                         this.onData(data);
@@ -89,6 +81,14 @@ export class TTYHardwareInterface {
                     this.rts = false;
                     this.logger.log("Connected");
                 });
+            });
+            this.serialPort.addListener("error", error => {
+                this.logger.error(`Error: ${error}`);
+                this.restart();
+            });
+            this.serialPort.addListener("close", () => {
+                this.logger.warn(`Closed?`);
+                this.restart();
             });
         } catch (e) {
             this.logger.error(`Failed to connect to serial port: ${e}`);
