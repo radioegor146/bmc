@@ -82,8 +82,8 @@ export class TTYHardwareInterface {
                 }, error => {
                     if (error) {
                         this.logger.error(`Failed to clear DTR/RTS: ${error}`);
-                        this.restart();
-                        return;
+                        // this.restart();
+                        // return;
                     }
                     this.dtr = false;
                     this.rts = false;
