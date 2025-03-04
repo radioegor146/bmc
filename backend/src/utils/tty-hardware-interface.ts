@@ -65,18 +65,25 @@ export class TTYHardwareInterface {
                     this.onData(data);
                 }
             });
-            this.serialPort.set({
-                dtr: false,
-                rts: false
-            }, error => {
+            this.serialPort.open(error => {
                 if (error) {
-                    this.logger.error(`Failed to clear DTR/RTS: ${error}`);
+                    this.logger.error(`Failed to open serial port: ${error}`);
                     this.restart();
                     return;
                 }
-                this.dtr = false;
-                this.rts = false;
-                this.logger.log("Connected");
+                this.serialPort.set({
+                    dtr: false,
+                    rts: false
+                }, error => {
+                    if (error) {
+                        this.logger.error(`Failed to clear DTR/RTS: ${error}`);
+                        this.restart();
+                        return;
+                    }
+                    this.dtr = false;
+                    this.rts = false;
+                    this.logger.log("Connected");
+                });
             });
         } catch (e) {
             this.logger.error(`Failed to connect to serial port: ${e}`);
