@@ -36,6 +36,11 @@ export class TTYHardwareInterface {
         } catch (e) {
             // ignore
         }
+        try {
+            this.serialPort?.destroy();
+        } catch (e) {
+            // ignore
+        }
         this.serialPort = undefined;
         if (this.restartTimeout) {
             clearTimeout(this.restartTimeout);
@@ -52,25 +57,25 @@ export class TTYHardwareInterface {
             this.serialPort = new SerialPort({
                 path: this.config.path,
                 baudRate: this.config.baudrate
-            });
-            this.serialPort.addListener("error", error => {
-                this.logger.error(`Error: ${error}`);
-                this.restart();
-            });
-            this.serialPort.addListener("close", () => {
-                this.restart();
-            });
-            this.serialPort.addListener("data", data => {
-                if (this.onData) {
-                    this.onData(data);
-                }
-            });
-            this.serialPort.open(error => {
+            }, error => {
                 if (error) {
                     this.logger.error(`Failed to open serial port: ${error}`);
                     this.restart();
                     return;
                 }
+                this.serialPort.addListener("error", error => {
+                    this.logger.error(`Error: ${error}`);
+                    this.restart();
+                });
+                this.serialPort.addListener("close", () => {
+                    this.logger.warn(`Closed?`);
+                    this.restart();
+                });
+                this.serialPort.addListener("data", data => {
+                    if (this.onData) {
+                        this.onData(data);
+                    }
+                });
                 this.serialPort.set({
                     dtr: false,
                     rts: false
