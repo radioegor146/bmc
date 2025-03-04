@@ -1,0 +1,65 @@
+{
+  "ppc": {
+    "name": "PowerPC BE",
+    "description": "Freescale P1011, 256M RAM",
+    "tty": {
+      "path": "/dev/external-serials/ppc-9600",
+      "baudrate": 9600
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "gray",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "power_status": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "armv6l": {
+    "name": "ARMv6",
+    "description": "Broadcom BCM2835, 512M RAM",
+    "tty": {
+      "path": "/dev/external-serials/armv6l-115200",
+      "baudrate": 115200
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "gray",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "power_status": {
+      "type": "toggle",
+      "id": "power"
+    }
+  },
+  "mipseb": {
+    "name": "MIPS BE",
+    "description": "Atheros AR9344 rev 2, 128M RAM",
+    "tty": {
+      "path": "/dev/external-serials/mipseb-115200",
+      "baudrate": 115200
+    },
+    "leds": {},
+    "buttons": {},
+    "toggles": {
+      "power": {
+        "color": "gray",
+        "icon": "power",
+        "pin": "dtr"
+      }
+    },
+    "power_status": {
+      "type": "toggle",
+      "id": "power"
+    }
+  }
+}
