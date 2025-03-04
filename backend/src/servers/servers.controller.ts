@@ -44,7 +44,7 @@ export class ServerInfoDTO {
     status: ServerStatus;
 }
 
-export class ServerHardwareInfoDTO {
+export class ServerHardwareInfoDTO extends ServerInfoDTO {
     @ApiProperty({type: [HardwareOptionInfoDTO]})
     leds: HardwareOptionInfoDTO[];
 

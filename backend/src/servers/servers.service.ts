@@ -191,6 +191,11 @@ export class ServersService implements OnModuleInit {
             return null;
         }
         return {
+            id: server.id,
+            name: server.config.name,
+            description: server.config.description,
+            status: server.isConnected() ? await server.getPowerState() ?
+                ServerStatus.POWERED : ServerStatus.NOT_POWERED : ServerStatus.UNAVAILABLE,
             leds: await server.getLEDStates(),
             buttons: await server.getButtonStates(),
             toggles: await server.getToggleStates()
