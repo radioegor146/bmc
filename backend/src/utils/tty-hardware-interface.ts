@@ -77,8 +77,8 @@ export class TTYHardwareInterface {
                     }
                 });
                 this.serialPort.set({
-                    dtr: false,
-                    rts: false
+                    // dtr: false,
+                    // rts: false
                 }, error => {
                     if (error) {
                         this.logger.error(`Failed to clear DTR/RTS: ${error}`);
