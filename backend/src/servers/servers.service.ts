@@ -26,7 +26,7 @@ export interface ServerConfig {
     leds: Record<string, ServerHardwareOptionConfig>;
     buttons: Record<string, ServerHardwareOptionConfig>;
     toggles: Record<string, ServerHardwareOptionConfig>;
-    powerState: {
+    powerStatus: {
         type: "toggle" | "led" | "button";
         id: string;
     };
@@ -49,13 +49,13 @@ export class Server {
     }
 
     getPowerPin(): TTYPin {
-        switch (this.config.powerState.type) {
+        switch (this.config.powerStatus.type) {
             case "toggle":
-                return this.config.toggles[this.config.powerState.id].pin;
+                return this.config.toggles[this.config.powerStatus.id].pin;
             case "led":
-                return this.config.leds[this.config.powerState.id].pin;
+                return this.config.leds[this.config.powerStatus.id].pin;
             case "button":
-                return this.config.buttons[this.config.powerState.id].pin;
+                return this.config.buttons[this.config.powerStatus.id].pin;
         }
     }
 
